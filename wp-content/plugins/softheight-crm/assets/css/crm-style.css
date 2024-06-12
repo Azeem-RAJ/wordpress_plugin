@@ -1,3 +1,35 @@
+/*poppins fontfamily use here*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*dashboard style sheet*/
+
+.crm_custom_fonts {
+    font-family: "Poppins", sans-serif;
+}
+
+.container-fluid {
+    width: 100% !important;
+}
+
+.dash_heading {
+    padding: 40px 0px;
+}
+
+.boder_left {
+    border-left: 1px solid #bcbc;
+}
+
+.shadw {
+    box-shadow: 0px -2px 6px #e1dcdced, 0 1px 6px #e1dcdced;
+    width: 93%;
+    border-radius: 8px;
+}
+
+.dash_box_b {
+    padding: 40px 0px;
+}
+
 .wrap {
     background: aliceblue;
 }

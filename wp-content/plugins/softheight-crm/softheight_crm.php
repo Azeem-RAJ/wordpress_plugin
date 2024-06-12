@@ -15,11 +15,33 @@ if (!defined('ABSPATH')){
   exit;
 };
 
-function custom_plugin_enqueue_styles() {
-  // Get the URL to the plugin's assets folder
-  $plugin_assets_url = plugin_dir_url( __FILE__ ) . 'assets/css/';
+// function custom_plugin_enqueue_styles() {
 
-  // Enqueue styles.css file
-  wp_enqueue_style( 'custom-plugin-styles', $plugin_assets_url . 'crm-style.css', array(), '1.0' );
+//   wp_enqueue_style( 'custom-plugin-styles', softheight_crm_url. 'assets/css/crm-style.css', array(), 'softheight_crm_verision' );
+//   wp_enqueue_style( 'bootstrap-styles', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', array(), '4.0.0');
+// }
+// add_action( 'admin_enqueue_scripts', 'custom_plugin_enqueue_styles' );
+
+
+if (!class_exists('softheight_crm')){
+  class softheight_crm{
+    function __construct(){
+      $this->define_constants();
+    }
+    public function define_constants(){
+      define ('softheight_crm_path', plugin_dir_path( __FILE__ ));
+      define ('softheight_crm_url', plugin_dir_url( __FILE__ ));
+      define ('softheight_crm_verision', '1.0,0');
+
+    }
+  }
 }
-add_action( 'admin_enqueue_scripts', 'custom_plugin_enqueue_styles' );
+if ((class_exists('softheight_crm'))){
+  $softheight_crm = new softheight_crm();
+}
+
+function custom_crm_enqueue_styles(){
+  wp_enqueue_style('softheight_crm_style', softheight_crm_url . 'assets/css/crm-style.css', 'softheight_crm_verision');
+  wp_enqueue_style('bootstrap-styles', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', '4.0.0');
+}
+add_action('admin_enqueue_scripts','custom_crm_enqueue_styles');
