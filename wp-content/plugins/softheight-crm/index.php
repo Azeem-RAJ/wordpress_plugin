@@ -8,6 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'admin_menu', 'wc_to_checkoutchamp_admin_menu' );
 
 function wc_to_checkoutchamp_admin_menu() {
+     // Check if WooCommerce is active
+    if ( class_exists( 'WooCommerce' ) ) {
     add_menu_page(
         'Softheight CRM',             // Page title
         'Softheight CRM',             // Menu title
@@ -29,8 +31,8 @@ function wc_to_checkoutchamp_admin_menu() {
 
     add_submenu_page(
         'wc-to-checkoutchamp',        // Parent slug
-        'Integration',                // Page title
-        'Integration',                // Menu title
+        'Connections',                // Page title
+        'Connections',                // Menu title
         'manage_options',             // Capability
         'wc-to-checkoutchamp-integration',  // Menu slug
         'wc_to_checkoutchamp_integration_page' // Function to display the Integration page
@@ -63,6 +65,7 @@ function wc_to_checkoutchamp_admin_menu() {
         'wc_to_checkoutchamp_upgrade_page' // Function to display the Upgrade page
     );
 }
+}
 
 // Display callback functions for each page
 function wc_to_checkoutchamp_dashboard_page() {
@@ -82,15 +85,11 @@ function wc_to_checkoutchamp_dashboard_page() {
     $orders = wc_get_orders($args);
     $orders_count = count($orders);
     require_once plugin_dir_path( __FILE__ ) . 'actions/dashboard_crm.php';
-  }
+}
 
 function wc_to_checkoutchamp_integration_page() {
-    ?>
-    <div class="wrap">
-        <h1>Integration</h1>
-        <p>Integration settings and options go here.</p>
-    </div>
-    <?php
+    require_once plugin_dir_path( __FILE__ ) . 'actions/connections_crm.php';
+   
 }
 
 function wc_to_checkoutchamp_tools_page() {

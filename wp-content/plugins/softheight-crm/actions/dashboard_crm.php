@@ -10,7 +10,7 @@ if (class_exists('WooCommerce')) {
 }
 ?>
 <main class="bg_main_a crm_custom_fonts">
-  <div class="container-fluid">
+  <div class="common_w container-fluid">
   <div class="row">
     <div class="col-12">
       <div class="dash_heading">
@@ -19,7 +19,7 @@ if (class_exists('WooCommerce')) {
     </div>
   </div>
 </div>
-<div class="container-fluid">
+<div class="common_w container-fluid">
   <div class="row shadw align-items-center  bg_main margin_common">
   <div class="col-5">
     <div class="dash_box_a">
@@ -48,7 +48,7 @@ if (class_exists('WooCommerce')) {
     </div>
   </div>
 </div>
-<div class="container-fluid">
+<div class="common_w container-fluid">
   <div class="row">
       <div class="col-6">
         <div class="status_tab mt-5">
