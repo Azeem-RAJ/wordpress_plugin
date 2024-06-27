@@ -197,8 +197,23 @@
     }
     
     .softheight-crm-admin-page .connection_crm_form label,
-    input {
+    input,
+    select {
         width: 100%;
+    }
+    
+    .softheight-crm-admin-page #crm {
+        max-width: 100% !important;
+        width: 100%;
+        min-height: 46px;
+    }
+    
+    .softheight-crm-admin-page .api_cred {
+        background: #F1F4F9;
+        padding: 40px;
+        margin-right: 20px;
+        box-shadow: 0px 1px 6px #e1dcdced, 0 1px 6px #e1dcdced;
+        height: 100%
     }
     
     .softheight-crm-admin-page .conne_name,
@@ -225,4 +240,41 @@
     
     .softheight-crm-admin-page .connection_crm_form label {
         padding-top: 15px;
+    }
+    
+    .softheight-crm-admin-page .form-success-message {
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+    
+    .softheight-crm-admin-page .form_crmselect {
+        display: flex;
+        align-items: center;
+    }
+    
+    .softheight-crm-admin-page .top_status {
+        border: 0px;
+        font-size: 20px;
+        background-color: #F1F4F9;
+    }
+    
+    .softheight-crm-admin-page .wp-core-ui select:focus {
+        border-color: transparent;
+        color: #0a4b78;
+        box-shadow: none !important;
+        border: 0px;
+    }
+    
+    .form_crmheader {
+        background: #F1F4F9;
+        padding: 20px;
+        margin-right: 20px;
+        box-shadow: 0px 1px 6px #e1dcdced, 0 1px 6px #e1dcdced;
+        margin-bottom: 21px;
+    }
+    
+    .top_status_h p {
+        font-size: 20px;
     }

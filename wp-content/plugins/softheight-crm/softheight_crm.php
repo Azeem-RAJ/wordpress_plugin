@@ -141,6 +141,99 @@ function softheight_crm_admin_body_class($classes) {
 add_filter('admin_body_class', 'softheight_crm_admin_body_class');
 
 
+function add_custom_validation_script() {
+  ?>
+  <script type="text/javascript">
+      jQuery(document).ready(function($) {
+          $('#my-plugin-form').submit(function(event) {
+              var isValid = true;
+
+              if ($('#crm').val() === '' || $('#api_username').val() === '' || $('#password').val() === '') {
+                  isValid = false;
+                  alert('Please fill out all required API Credentials fields.');
+              }
+
+              if (!isValid) {
+                  event.preventDefault();
+              }
+          });
+      });
+  </script>
+  <?php
+}
+add_action('wp_footer', 'add_custom_validation_script');
+
+add_action('admin_post_my_form_submit', 'handle_my_form_submit');
+
+add_action('admin_post_my_form_submit', 'handle_my_form_submit');
+
+add_action('admin_post_my_form_submit', 'handle_my_form_submit');
+
+function handle_my_form_submit() {
+    global $wpdb;
+
+    if (isset($_POST['username']) && isset($_POST['crm']) && isset($_POST['api_username']) && isset($_POST['password'])) {
+        $username = sanitize_text_field($_POST['username']);
+        $campaign_id = sanitize_text_field($_POST['campaign_id']);
+        $default_shipping_id = sanitize_text_field($_POST['default_shipping_id']);
+        $crm = sanitize_text_field($_POST['crm']);
+        $api_username = sanitize_text_field($_POST['api_username']);
+        $password = sanitize_text_field($_POST['password']);
+
+        // Create a new table if not exists
+        $table_name = $wpdb->prefix . "crm_connection";
+        $charset_collate = $wpdb->get_charset_collate();
+
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            username varchar(255) NOT NULL,
+            campaign_id varchar(255) NOT NULL,
+            default_shipping_id varchar(255) NOT NULL,
+            crm varchar(255) NOT NULL,
+            api_username varchar(255) NOT NULL,
+            password varchar(255) NOT NULL,
+            user_url varchar(255) NOT NULL,
+            PRIMARY KEY (id)
+        ) $charset_collate;";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+
+        // Get user URL from wp_user table
+        $current_user = wp_get_current_user();
+        $user_url = $current_user->user_url;
+
+        // Insert form data into the table
+        $wpdb->insert(
+            $table_name,
+            array(
+                'username' => $username,
+                'campaign_id' => $campaign_id,
+                'default_shipping_id' => $default_shipping_id,
+                'crm' => $crm,
+                'api_username' => $api_username,
+                'password' => $password,
+                'user_url' => $user_url
+            )
+        );
+
+        // Redirect back to the form page with a success parameter
+        $redirect_url = add_query_arg('form_status', 'success', wp_get_referer());
+        wp_redirect($redirect_url);
+        exit;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

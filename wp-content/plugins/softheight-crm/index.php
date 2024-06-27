@@ -34,8 +34,8 @@ function wc_to_checkoutchamp_admin_menu() {
         'Connections',                // Page title
         'Connections',                // Menu title
         'manage_options',             // Capability
-        'wc-to-checkoutchamp-integration',  // Menu slug
-        'wc_to_checkoutchamp_integration_page' // Function to display the Integration page
+        'wc-to-checkoutchamp-connections',  // Menu slug
+        'wc_to_checkoutchamp_connections_page' // Function to display the Integration page
     );
 
     add_submenu_page(
@@ -87,9 +87,8 @@ function wc_to_checkoutchamp_dashboard_page() {
     require_once plugin_dir_path( __FILE__ ) . 'actions/dashboard_crm.php';
 }
 
-function wc_to_checkoutchamp_integration_page() {
+function wc_to_checkoutchamp_connections_page() {
     require_once plugin_dir_path( __FILE__ ) . 'actions/connections_crm.php';
-   
 }
 
 function wc_to_checkoutchamp_tools_page() {
