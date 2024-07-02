@@ -1,19 +1,32 @@
 <?php
+session_start();
+
 // Initialize variables to hold submitted values or set default values if not submitted
 $username_value = isset($_POST['username']) ? esc_attr($_POST['username']) : '';
 $campaign_id_value = isset($_POST['campaign_id']) ? esc_attr($_POST['campaign_id']) : '';
 $default_shipping_id_value = isset($_POST['default_shipping_id']) ? esc_attr($_POST['default_shipping_id']) : '';
 $crm_value = isset($_POST['crm']) ? esc_attr($_POST['crm']) : '';
 $api_username_value = isset($_POST['api_username']) ? esc_attr($_POST['api_username']) : '';
+
+// If the form is successfully submitted, set the session variable
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['action']) && $_POST['action'] === 'my_form_submit') {
+    $_SESSION['form_status'] = 'success';
+    // Redirect to avoid form resubmission
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
+}
+
+// Check the session variable to determine if the success message should be shown
+$form_status = isset($_SESSION['form_status']) ? $_SESSION['form_status'] : '';
+unset($_SESSION['form_status']);
 ?>
 
-<?php 
-if (isset($_GET['form_status']) && $_GET['form_status'] == 'success') {
-    echo '<div id="form-message" class="form-success-message">Form submitted successfully</div>';
-}
-?>
 <div class="main-form">
-  
+
+<?php if ($form_status === 'success'): ?>
+        <div id="form-message" class="form-success-message">Connection created successfully</div>
+    <?php endif; ?>
+    
 <div class="common_w container-fluid">
     <div class="row">
         <div class="col-12">
@@ -27,20 +40,24 @@ if (isset($_GET['form_status']) && $_GET['form_status'] == 'success') {
 <div class="common_w container-fluid">
     <div class="row">
         <div class="col-12">
-          <div class="form_crmheader">
-              <div class="form_crmselect">
-                    <div class="top_status_h">
-                          <p class="m-0">Status |</p>
+        <div class="form_crmheader">
+            <div class="form_crmselect">
+                  <div class="form_sel_tex">
+                  <div class="top_status_h">
+                        <p class="m-0">Status |</p>
                     </div>
                     <div class="top_status_sel">
-                          <select class="top_status">
-                              <option value="All">Publish</option>
-                              <option value="Active">Active</option>
-                          </select>
+                        <select class="top_status">
+                            <option value="All">Publish</option>
+                            <option value="Active">Active</option>
+                        </select>
                     </div>
-              </div>
-              
-          </div>
+                  </div>
+                    <div class="top_ststus_btn">
+                    <button id="setActionButton">Save Connection</button>
+                    </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -78,7 +95,7 @@ if (isset($_GET['form_status']) && $_GET['form_status'] == 'success') {
                         <input type="password" id="password" name="password" placeholder="Enter Password" required>
                         <div class="form_crm_btn">
               <div class="btn_save">
-                            <button type="submit">Save Connection</button>
+                            <button id="connection_btn_form" type="submit">Save Connection</button>
               </div>
               </div>
                     </div>

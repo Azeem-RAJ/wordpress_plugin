@@ -1,9 +1,24 @@
-$(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-});
-
 jQuery(document).ready(function($) {
-    // Form validation (existing code)
+    console.log('CRM script loaded');
+
+    $('#setActionButton').on('click', function() {
+        console.log('Button clicked');
+        var form = $('#my-plugin-form');
+        var selectedStatus = $('.top_status').val();
+        var actionUrl = '';
+
+        if (selectedStatus === 'Publish') {
+            actionUrl = 'publish_action_url.php';
+        } else if (selectedStatus === 'Active') {
+            actionUrl = 'active_action_url.php';
+        }
+
+        console.log('Form action set to:', actionUrl);
+        form.attr('action', actionUrl);
+        form.submit();
+    });
+
+    // Existing validation code
     $('#my-plugin-form').on('submit', function(e) {
         var isValid = true;
 
@@ -18,12 +33,18 @@ jQuery(document).ready(function($) {
 
         if (!isValid) {
             e.preventDefault();
-            alert('Please fill in all required fields.');
         }
     });
 
     // Hide the success message after 5 seconds
-    setTimeout(function() {
-        $('#form-message').fadeOut('slow');
-    }, 5000);
+    function hideSuccessMessage() {
+        setTimeout(function() {
+            $('#form-message').fadeOut('slow');
+        }, 5000);
+    }
+
+    // Check if the success message exists on page load
+    if ($('#form-message').length) {
+        hideSuccessMessage();
+    }
 });

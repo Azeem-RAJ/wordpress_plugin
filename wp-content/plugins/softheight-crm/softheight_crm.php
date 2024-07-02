@@ -47,14 +47,16 @@ function softheight_crm_enqueue_styles($hook) {
       // Enqueue jQuery (Bootstrap requires jQuery)
       wp_enqueue_script('jquery');
 
+      // Enqueue custom JavaScript
+      wp_enqueue_script('softheight-crm', plugin_dir_url(__FILE__) . 'assets/js/crm_jquery.js', array('jquery'), null, true);
+
       // Enqueue Popper.js (Bootstrap 4 dependency)
       wp_enqueue_script('popper-js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', array('jquery'), '1.12.9', true);
 
       // Enqueue Bootstrap JavaScript
       wp_enqueue_script('bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array('jquery', 'popper-js'), '4.0.0', true);
 
-      // Enqueue custom JavaScript
-      wp_enqueue_script('softheight_crm_script', plugin_dir_url(__FILE__) . 'assets/js/crm_jquery.js', array('jquery'), '1.0.0', true);
+
   }
 }
 add_action('admin_enqueue_scripts', 'softheight_crm_enqueue_styles');

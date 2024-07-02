@@ -252,6 +252,7 @@
     .softheight-crm-admin-page .form_crmselect {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
     
     .softheight-crm-admin-page .top_status {
@@ -267,14 +268,31 @@
         border: 0px;
     }
     
-    .form_crmheader {
+    .softheight-crm-admin-page .form_crmheader {
         background: #F1F4F9;
-        padding: 20px;
         margin-right: 20px;
         box-shadow: 0px 1px 6px #e1dcdced, 0 1px 6px #e1dcdced;
         margin-bottom: 21px;
     }
     
-    .top_status_h p {
+    .softheight-crm-admin-page .top_status_h p {
         font-size: 20px;
+    }
+    
+    .softheight-crm-admin-page #connection_btn_form {
+        opacity: 0;
+    }
+    
+    .softheight-crm-admin-page .form_sel_tex {
+        display: flex;
+        align-items: center;
+        padding: 0px 20px;
+    }
+    
+    .softheight-crm-admin-page #setActionButton {
+        padding: 20px;
+        box-shadow: none;
+        border: 0px;
+        background: #2271B1;
+        color: #fff;
     }
